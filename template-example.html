@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="es" class="lang-es" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shalom Estetica · Guía de Estilo / Brand Style Guide</title>
+<meta name="description" content="Guía de estilo de marca de Shalom Estetica — paleta, tipografía, componentes y voz. Spa, barbería y bienestar consciente en Bello, Antioquia.">
+<meta name="robots" content="noindex, follow">
+<meta name="google" content="notranslate">
+<!-- Restore saved language before paint to avoid a flash -->
+<script>
+  (function () {
+    var lang = 'es';
+    try {
+      var saved = localStorage.getItem('shalom-lang');
+      if (saved === 'en' || saved === 'es') lang = saved;
+    } catch (e) {}
+    var root = document.documentElement;
+    root.classList.remove('lang-es', 'lang-en');
+    root.classList.add('lang-' + lang);
+    root.setAttribute('lang', lang);
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="https://shalomestetica.co/assets/shalom-estetica-logo.svg">
+<style>
+  /* ============ DESIGN TOKENS ============ */
+  :root {
+    /* Green (primary) */
+    --green:     #4D911C;
+    --green-600: #6FA647;
+    --green-500: #91BB72;
+    --green-400: #B2D09D;
+    --green-300: #D4E5C9;
+    --green-50:  #F6F9F4;
+    --green-deep:#2F5C10;   /* darker green for gradients / reversed surfaces */
+
+    /* Pink (accent) */
+    --pink:      #ED175A;
+    --pink-600:  #F04379;
+    --pink-500:  #F46F99;
+    --pink-400:  #F79BB8;
+    --pink-300:  #FBC7D7;
+    --pink-50:   #FEF3F7;
+
+    /* Tan (background / muted) */
+    --tan:       #CEB19C;
+    --tan-600:   #D7C0AF;
+    --tan-500:   #E1CFC2;
+    --tan-400:   #EADDD4;
+    --tan-300:   #F3ECE7;
+    --tan-50:    #FDFBFA;
+
+    /* Surfaces */
+    --paper:     #FFFFFF;
+    --page:      #FBF7F3;
+
+    /* Ink */
+    --ink:       #2B2A27;   /* body text */
+    --slate:     #5C5750;   /* secondary text */
+    --mid:       #847C71;   /* tertiary / captions */
+    --silver:    #B0A698;   /* muted / disabled */
+    --rule:      #E7DDD3;   /* dividers */
+    --rule-2:    #F1E9E1;   /* subtle dividers */
+
+    /* Functional / status */
+    --ok:        #4D911C;
+    --warn:      #C8881C;
+    --stop:      #C0392B;
+
+    /* Type faces */
+    --sans: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  body { overflow-x: hidden; }  /* on body only — iOS position:fixed bug */
+
+  /* Language visibility ----------------------------------------------- */
+  .lang-es .en-only { display: none !important; }
+  .lang-en .es-only { display: none !important; }
+
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 22px 120px; }
+  @media (min-width: 760px)  { .page { padding: 0 40px 120px; } }
+
+  a { color: var(--green); text-decoration: none; }
+  a:hover { color: var(--pink); }
+
+  /* ============ HEADER ============ */
+  .header-bar {
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 54px 22px 64px;
+    background: linear-gradient(135deg, var(--green) 0%, var(--green-deep) 58%, #1C3A09 100%);
+    color: #fff;
+    overflow: hidden;
+  }
+  .header-bar::before {
+    /* faint botanical glow */
+    content: "";
+    position: absolute;
+    right: -120px; top: -120px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(237,23,90,.22), transparent 68%);
+    pointer-events: none;
+  }
+  .header-bar::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 5px;
+    background: var(--pink);
+  }
+  .header-inner { max-width: 1180px; margin: 0 auto; padding: 0 22px; position: relative; }
+  @media (min-width: 760px) { .header-inner { padding: 0 40px; } }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .header-logo {
+    height: 46px; width: auto; display: block;
+    /* solid-green wordmark reversed to white for the dark header */
+    filter: brightness(0) invert(1);
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--pink-300);
+    margin-bottom: 14px;
+  }
+  .header-bar h1 {
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: clamp(2.3rem, 1.5rem + 3.6vw, 4rem);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin: 0 0 18px;
+    color: #fff;
+  }
+  .header-bar .lede {
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(255,255,255,.9);
+    max-width: 680px;
+    margin: 0 0 24px;
+  }
+  .header-bar .meta {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,.62);
+    text-transform: uppercase;
+  }
+  .header-bar .meta b { color: rgba(255,255,255,.95); font-weight: 500; }
+
+  /* ============ LANG TOGGLE (pinned top-right) ============ */
+  .lang-toggle {
+    display: inline-flex;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.16);
+    backdrop-filter: blur(6px);
+  }
+  .lang-toggle button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 6px 14px;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .04em;
+    color: rgba(255,255,255,.82);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+  }
+  .lang-toggle button:hover { color: #fff; }
+  .lang-toggle button[aria-pressed="true"] { background: #fff; color: var(--green); }
+  .lang-toggle button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  /* ============ STICKY SECTION NAV ============ */
+  .section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: rgba(251,247,243,.82);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-nav-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  @media (min-width: 760px) { .section-nav-inner { padding: 0 40px; } }
+  .section-nav a {
+    flex: 0 0 auto;
+    padding: 14px 12px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .04em;
+    color: var(--slate);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .section-nav a:hover { color: var(--green); }
+  .section-nav a.active { color: var(--green); border-bottom-color: var(--green); }
+
+  /* ============ SECTIONS ============ */
+  .section { padding: 64px 0 8px; border-bottom: 1px solid var(--rule-2); }
+  .section:last-of-type { border-bottom: 0; }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 8px;
+  }
+  .section h2 {
+    font-family: var(--sans);
+    font-weight: 900;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
+    letter-spacing: -0.01em;
+    color: var(--green);
+    margin: 0 0 10px;
+    text-transform: uppercase;
+  }
+  .section-blurb {
+    max-width: 640px;
+    color: var(--slate);
+    font-size: 15.5px;
+    margin: 0 0 36px;
+  }
+  h3 {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 40px 0 16px;
+  }
+
+  /* ---- Cards / grids ---- */
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 22px;
+  }
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  @media (min-width: 680px) { .grid-2 { grid-template-columns: 1fr 1fr; } .grid-3 { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 980px) { .grid-3 { grid-template-columns: repeat(3,1fr); } }
+
+  /* ---- 01 Foundation ---- */
+  .essence {
+    background: var(--green-50);
+    border: 1px solid var(--green-300);
+    border-left: 4px solid var(--green);
+    border-radius: 14px;
+    padding: 28px 26px;
+    margin-bottom: 28px;
+  }
+  .essence .quote {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.7rem);
+    line-height: 1.3;
+    color: var(--green);
+    margin: 0;
+  }
+  .essence .by {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--pink);
+    margin-top: 12px;
+  }
+  .pillar h4 {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin: 0 0 8px;
+  }
+  .pillar .pt { font-weight: 700; color: var(--ink); margin: 0 0 6px; }
+  .pillar p { margin: 0; color: var(--slate); font-size: 14px; }
+
+  /* ---- 02 Typography ---- */
+  .type-specimen { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+  .type-row { padding: 20px 24px; border-bottom: 1px solid var(--rule-2); }
+  .type-row:last-child { border-bottom: 0; }
+  .type-row .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
+  .sp-display { font-family: var(--sans); font-weight: 900; font-size: 2.6rem; line-height: 1.05; letter-spacing: -.02em; color: var(--ink); }
+  .sp-h2 { font-family: var(--sans); font-weight: 900; font-size: 1.7rem; color: var(--green); text-transform: uppercase; }
+  .sp-mono { font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: .04em; color: var(--pink); }
+  .sp-body { font-family: var(--sans); font-weight: 400; font-size: 16px; color: var(--ink); }
+  .sp-light { font-family: var(--sans); font-weight: 300; font-size: 17px; color: var(--slate); }
+
+  .lockup-demo { text-align: center; padding: 36px 20px; background: var(--tan-50); border: 1px dashed var(--tan); border-radius: 16px; }
+  .lockup-demo .lk-h { font-family: var(--sans); font-weight: 900; font-size: 2rem; color: var(--green); text-transform: uppercase; letter-spacing: -.01em; }
+  .lockup-demo .lk-t { font-family: var(--mono); font-weight: 500; font-size: 13px; color: var(--pink); letter-spacing: .06em; margin-top: 2px; }
+
+  .scale-row { display: flex; align-items: baseline; gap: 18px; padding: 10px 0; border-bottom: 1px solid var(--rule-2); }
+  .scale-row .px { font-family: var(--mono); font-size: 12px; color: var(--mid); width: 86px; flex: 0 0 auto; }
+  .scale-row .sample { font-family: var(--sans); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* ---- 03 Color ---- */
+  .swatch-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+  @media (min-width: 560px) { .swatch-grid { grid-template-columns: repeat(3,1fr); } }
+  @media (min-width: 900px) { .swatch-grid { grid-template-columns: repeat(6,1fr); } }
+  .swatch { border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); background: var(--paper); }
+  .swatch .chip { height: 76px; }
+  .swatch .meta { padding: 9px 11px; }
+  .swatch .role { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--mid); }
+  .swatch .hex { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--ink); }
+  .status-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  @media (min-width: 620px) { .status-grid { grid-template-columns: repeat(3,1fr); } }
+  .status-chip { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--rule); background: var(--paper); }
+  .status-chip .dot { width: 14px; height: 14px; border-radius: 50%; flex: 0 0 auto; }
+  .status-chip .nm { font-weight: 700; font-size: 13px; }
+  .status-chip .hx { font-family: var(--mono); font-size: 11.5px; color: var(--mid); }
+
+  /* ---- 04 Logo ---- */
+  .logo-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 680px) { .logo-grid { grid-template-columns: repeat(3,1fr); } }
+  .logo-tile { border-radius: 16px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; padding: 40px 20px; min-height: 150px; }
+  .logo-tile img { width: 160px; height: auto; }
+  .logo-tile.on-white { background: #fff; }
+  .logo-tile.on-tan { background: var(--tan-300); }
+  .logo-tile.on-green { background: var(--green); }
+  .logo-tile.on-green img { filter: brightness(0) invert(1); }
+  .logo-label { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--mid); margin-top: 10px; text-align: center; }
+
+  /* ---- Do / Don't ---- */
+  .dd-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 680px) { .dd-grid { grid-template-columns: 1fr 1fr; } }
+  .dd { border-radius: 14px; padding: 18px 20px; border: 1px solid var(--rule); background: var(--paper); }
+  .dd .tag { font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 10px; }
+  .dd.do { border-color: var(--green-300); background: var(--green-50); }
+  .dd.do .tag { color: var(--green); }
+  .dd.dont { border-color: var(--pink-300); background: var(--pink-50); }
+  .dd.dont .tag { color: var(--pink); }
+  .dd ul { margin: 0; padding-left: 18px; color: var(--slate); font-size: 14px; }
+  .dd li { margin: 4px 0; }
+
+  /* ---- 05 Components ---- */
+  .comp-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 24px; }
+  .comp-card .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
+  .stage { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+  .btn {
+    appearance: none; cursor: pointer;
+    font-family: var(--sans); font-weight: 700; font-size: 14px;
+    padding: 12px 24px; border-radius: 999px; border: 2px solid transparent;
+    transition: transform .12s, background .15s, color .15s, border-color .15s;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-primary { background: var(--pink); color: #fff; }
+  .btn-primary:hover { background: var(--pink-600); }
+  .btn-secondary { background: var(--green); color: #fff; }
+  .btn-secondary:hover { background: var(--green-deep); }
+  .btn-ghost { background: transparent; color: var(--green); border-color: var(--green); }
+  .btn-ghost:hover { background: var(--green); color: #fff; }
+
+  .badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .04em; padding: 5px 12px; border-radius: 999px; }
+  .badge-green { background: var(--green-50); color: var(--green); border: 1px solid var(--green-300); }
+  .badge-pink { background: var(--pink-50); color: var(--pink); border: 1px solid var(--pink-300); }
+  .badge-tan { background: var(--tan-300); color: var(--slate); border: 1px solid var(--tan); }
+
+  .status-pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; border: 1px solid; }
+  .status-pill .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .pill-open { background: var(--green-50); color: var(--green); border-color: var(--green-300); }
+  .pill-open .dot { background: var(--green); }
+  .pill-soon { background: #FBF3E2; color: var(--warn); border-color: #ECD6A8; }
+  .pill-soon .dot { background: var(--warn); }
+  .pill-closed { background: #FBEAE8; color: var(--stop); border-color: #F2C9C4; }
+  .pill-closed .dot { background: var(--stop); }
+
+  /* ---- 06 Patterns ---- */
+  .menu-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 20px 22px; max-width: 460px; }
+  .menu-card.featured { border-color: var(--pink-300); background: linear-gradient(180deg, var(--pink-50), #fff 60%); }
+  .menu-card h4 { margin: 0 0 4px; font-family: var(--sans); font-weight: 900; color: var(--green); text-transform: uppercase; font-size: 1.05rem; }
+  .menu-card .cat-tag { font-family: var(--mono); font-size: 11px; color: var(--pink); letter-spacing: .04em; margin-bottom: 14px; }
+  .menu-item { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-bottom: 1px dashed var(--rule); }
+  .menu-item:last-child { border-bottom: 0; }
+  .menu-item .nm { color: var(--ink); font-size: 14.5px; }
+  .menu-item .pr { font-family: var(--mono); font-weight: 700; color: var(--pink); white-space: nowrap; }
+
+  .hero-demo {
+    position: relative; border-radius: 16px; overflow: hidden; min-height: 220px;
+    display: flex; align-items: center; padding: 32px;
+    background: linear-gradient(120deg, #3a6b16, var(--green));
+  }
+  .hero-demo::after { content: ""; position: absolute; inset: 0; background: rgba(237,23,90,.24); }
+  .hero-demo .hd-content { position: relative; z-index: 1; color: #fff; text-shadow: 0 1px 14px rgba(0,0,0,.35); }
+  .hero-demo .hd-eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: #fff; }
+  .hero-demo .hd-h { font-family: var(--sans); font-weight: 900; font-size: 1.8rem; color: #fff; margin: 6px 0; text-transform: uppercase; }
+  .hero-demo .hd-p { font-weight: 300; max-width: 420px; }
+
+  /* ---- 07 Voice ---- */
+  .voice-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 760px) { .voice-grid { grid-template-columns: 1fr 1fr; } }
+  .voice-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 22px; }
+  .voice-card .vt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; }
+  .voice-card .vh { font-weight: 900; color: var(--green); font-size: 1.15rem; text-transform: uppercase; margin-bottom: 8px; }
+  .voice-card p { margin: 0; color: var(--slate); font-size: 14px; }
+  .sample-quote { font-family: var(--sans); font-style: italic; font-size: 15px; color: var(--ink); border-left: 3px solid var(--pink); padding-left: 14px; margin: 14px 0 0; }
+
+  /* ---- Footer ---- */
+  .footer { width: 100vw; margin-left: calc(50% - 50vw); background: var(--tan-300); border-top: 1px solid var(--rule); margin-top: 60px; }
+  .footer .footer-inner { max-width: 1180px; margin: 0 auto; padding: 30px 22px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+  @media (min-width: 760px) { .footer .footer-inner { padding: 30px 40px; } }
+  .footer .credit { font-family: var(--mono); font-size: 12px; color: var(--slate); }
+  .footer .credit a { color: var(--green); font-weight: 700; }
+</style>
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header-bar">
+    <div class="header-inner">
+      <div class="header-top">
+        <img class="header-logo" src="https://shalomestetica.co/assets/shalom-estetica-logo.svg" alt="Shalom Estetica">
+        <div class="lang-toggle" role="group" aria-label="Language / Idioma">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+      <div class="kicker">
+        <span class="es-only">Guía de Estilo de Marca</span>
+        <span class="en-only">Brand Style Guide</span>
+      </div>
+      <h1>
+        <span class="es-only">Una experiencia de paz.</span>
+        <span class="en-only">An experience of peace.</span>
+      </h1>
+      <p class="lede">
+        <span class="es-only">El sistema visual de Shalom Estetica — paleta, tipografía, componentes y voz. Más que un spa. Más que una barbería. Un espacio en Bello, Antioquia, donde el cuidado físico se une al equilibrio espiritual.</span>
+        <span class="en-only">The Shalom Estetica visual system — palette, typography, components, and voice. More than a spa. More than a barbershop. A space in Bello, Antioquia, where physical care meets spiritual balance.</span>
+      </p>
+      <div class="meta">
+        <span class="es-only">Spa · Barbería · Bienestar consciente &nbsp;·&nbsp; Bello, Antioquia &nbsp;·&nbsp; <b>v1.0</b></span>
+        <span class="en-only">Spa · Barbershop · Conscious wellness &nbsp;·&nbsp; Bello, Antioquia &nbsp;·&nbsp; <b>v1.0</b></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ STICKY NAV ============ -->
+  <nav class="section-nav" aria-label="Section navigation">
+    <div class="section-nav-inner">
+      <a href="#foundation"><span class="es-only">01 · Fundamento</span><span class="en-only">01 · Foundation</span></a>
+      <a href="#typography"><span class="es-only">02 · Tipografía</span><span class="en-only">02 · Typography</span></a>
+      <a href="#color"><span class="es-only">03 · Color</span><span class="en-only">03 · Color</span></a>
+      <a href="#logo"><span class="es-only">04 · Logo</span><span class="en-only">04 · Logo</span></a>
+      <a href="#components"><span class="es-only">05 · Componentes</span><span class="en-only">05 · Components</span></a>
+      <a href="#patterns"><span class="es-only">06 · Patrones</span><span class="en-only">06 · Patterns</span></a>
+      <a href="#voice"><span class="es-only">07 · Voz y Tono</span><span class="en-only">07 · Voice &amp; Tone</span></a>
+    </div>
+  </nav>
+
+  <div class="page">
+
+    <!-- ============ 01 FOUNDATION ============ -->
+    <section class="section" id="foundation">
+      <div class="eyebrow">01</div>
+      <h2><span class="es-only">Fundamento</span><span class="en-only">Foundation</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">Quiénes somos y qué nos guía. Cada decisión de diseño parte de esta esencia: calma, cuidado y propósito.</span>
+        <span class="en-only">Who we are and what guides us. Every design decision flows from this essence: calm, care, and purpose.</span>
+      </p>
+
+      <div class="essence">
+        <p class="quote">
+          <span class="es-only">«Más que un spa. Más que una barbería. Una experiencia de paz.»</span>
+          <span class="en-only">“More than a spa. More than a barbershop. An experience of peace.”</span>
+        </p>
+        <div class="by">— Shalom Estetica · Salomé Arroyo</div>
+      </div>
+
+      <h3><span class="es-only">Principios de marca</span><span class="en-only">Brand principles</span></h3>
+      <div class="grid grid-3">
+        <div class="card pillar">
+          <h4><span class="es-only">Calma</span><span class="en-only">Calm</span></h4>
+          <p class="pt"><span class="es-only">Espacio que respira</span><span class="en-only">Space that breathes</span></p>
+          <p><span class="es-only">Amplio aire visual, ritmo pausado y superficies cálidas. Nada compite por atención.</span><span class="en-only">Generous visual air, an unhurried rhythm, and warm surfaces. Nothing competes for attention.</span></p>
+        </div>
+        <div class="card pillar">
+          <h4><span class="es-only">Cuidado</span><span class="en-only">Care</span></h4>
+          <p class="pt"><span class="es-only">Detalle intencional</span><span class="en-only">Intentional detail</span></p>
+          <p><span class="es-only">Lo cálido y lo preciso conviven: tipografía limpia, bordes suaves, color usado con mesura.</span><span class="en-only">Warmth and precision coexist: clean type, soft edges, color used with restraint.</span></p>
+        </div>
+        <div class="card pillar">
+          <h4><span class="es-only">Propósito</span><span class="en-only">Purpose</span></h4>
+          <p class="pt"><span class="es-only">Bienestar consciente</span><span class="en-only">Conscious wellness</span></p>
+          <p><span class="es-only">El cuidado físico se une al equilibrio espiritual. La belleza con sentido, no por vanidad.</span><span class="en-only">Physical care meets spiritual balance. Beauty with meaning, never vanity.</span></p>
+        </div>
+      </div>
+
+      <h3><span class="es-only">A quién servimos</span><span class="en-only">Who we serve</span></h3>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="badge badge-green"><span class="es-only">Mujeres empoderadas</span><span class="en-only">Empowered women</span></span>
+          <p style="margin:12px 0 0;color:var(--slate);font-size:14px;"><span class="es-only">Que buscan un refugio para reconectar consigo mismas.</span><span class="en-only">Seeking a refuge to reconnect with themselves.</span></p>
+        </div>
+        <div class="card">
+          <span class="badge badge-pink"><span class="es-only">Jóvenes con propósito</span><span class="en-only">Purpose-driven youth</span></span>
+          <p style="margin:12px 0 0;color:var(--slate);font-size:14px;"><span class="es-only">Conscientes, que valoran el bienestar tanto como la estética.</span><span class="en-only">Conscious, valuing wellbeing as much as aesthetics.</span></p>
+        </div>
+        <div class="card">
+          <span class="badge badge-tan"><span class="es-only">Hombres caballeros</span><span class="en-only">Gentlemen</span></span>
+          <p style="margin:12px 0 0;color:var(--slate);font-size:14px;"><span class="es-only">Que aprecian el cuidado y un servicio de barbería a la altura.</span><span class="en-only">Who appreciate grooming and barbering done right.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 02 TYPOGRAPHY ============ -->
+    <section class="section" id="typography">
+      <div class="eyebrow">02</div>
+      <h2><span class="es-only">Tipografía</span><span class="en-only">Typography</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">Dos familias. <b>Roboto</b> para títulos y cuerpo — humana y legible. <b>Roboto Mono</b> para sub-títulos, etiquetas y precios — un acento técnico y delicado.</span>
+        <span class="en-only">Two families. <b>Roboto</b> for titles and body — humanist and readable. <b>Roboto Mono</b> for sub-titles, labels, and prices — a delicate technical accent.</span>
+      </p>
+
+      <div class="type-specimen">
+        <div class="type-row">
+          <div class="lbl">Roboto · 900 · Display / H1</div>
+          <div class="sp-display">Shalom Estetica</div>
+        </div>
+        <div class="type-row">
+          <div class="lbl">Roboto · 900 · H2 (uppercase, green)</div>
+          <div class="sp-h2"><span class="es-only">Servicios</span><span class="en-only">Services</span></div>
+        </div>
+        <div class="type-row">
+          <div class="lbl">Roboto Mono · 500 · Sub-title / eyebrow (pink)</div>
+          <div class="sp-mono"><span class="es-only">cuidado consciente</span><span class="en-only">conscious care</span></div>
+        </div>
+        <div class="type-row">
+          <div class="lbl">Roboto · 400 · Body</div>
+          <div class="sp-body"><span class="es-only">Un espacio donde el cuidado físico se une al equilibrio espiritual.</span><span class="en-only">A space where physical care meets spiritual balance.</span></div>
+        </div>
+        <div class="type-row">
+          <div class="lbl">Roboto · 300 · Lede / intro</div>
+          <div class="sp-light"><span class="es-only">Más que un spa. Más que una barbería.</span><span class="en-only">More than a spa. More than a barbershop.</span></div>
+        </div>
+      </div>
+
+      <h3><span class="es-only">El lockup de encabezado</span><span class="en-only">The heading lockup</span></h3>
+      <p class="section-blurb" style="margin-bottom:18px;">
+        <span class="es-only">El patrón firma de la marca: un título en mayúsculas verde, con una bajada en minúsculas, Roboto Mono y rosa <b>debajo</b> — replicando visualmente el lockup del logo SHALOM / estética.</span>
+        <span class="en-only">The brand's signature pattern: an uppercase green heading with a lowercase Roboto Mono pink tagline <b>underneath</b> — visually echoing the SHALOM / estética logo lockup.</span>
+      </p>
+      <div class="lockup-demo">
+        <div class="lk-h"><span class="es-only">Bienvenido</span><span class="en-only">Welcome</span></div>
+        <div class="lk-t"><span class="es-only">tu momento de paz empieza aquí</span><span class="en-only">your moment of peace starts here</span></div>
+      </div>
+
+      <h3><span class="es-only">Escala tipográfica</span><span class="en-only">Type scale</span></h3>
+      <div class="card">
+        <div class="scale-row"><span class="px">44 / 900</span><span class="sample" style="font-size:44px;font-weight:900;letter-spacing:-.02em;">Shalom</span></div>
+        <div class="scale-row"><span class="px">28 / 900</span><span class="sample" style="font-size:28px;font-weight:900;color:var(--green);text-transform:uppercase;">Servicios</span></div>
+        <div class="scale-row"><span class="px">17 / 300</span><span class="sample" style="font-size:17px;font-weight:300;">Una experiencia de paz</span></div>
+        <div class="scale-row"><span class="px">15 / 400</span><span class="sample" style="font-size:15px;">Cuerpo de texto base, 15px</span></div>
+        <div class="scale-row" style="border-bottom:0;"><span class="px">13 / mono</span><span class="sample" style="font-family:var(--mono);font-size:13px;color:var(--pink);">$ 45.000 COP</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 03 COLOR ============ -->
+    <section class="section" id="color">
+      <div class="eyebrow">03</div>
+      <h2><span class="es-only">Color</span><span class="en-only">Color</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">Tres familias. <b>Verde</b> es la marca — logo, encabezados y acentos clave. <b>Rosa</b> se reserva para llamadas a la acción y resaltes. <b>Tan</b> da calidez a fondos, tarjetas y UI silenciada.</span>
+        <span class="en-only">Three families. <b>Green</b> is the brand — logo, headings, and key accents. <b>Pink</b> is reserved for calls-to-action and highlights. <b>Tan</b> warms backgrounds, cards, and muted UI.</span>
+      </p>
+
+      <h3><span class="es-only">Verde · primario</span><span class="en-only">Green · primary</span></h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#4D911C"></div><div class="meta"><div class="role">Primary</div><div class="hex">#4D911C</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#6FA647"></div><div class="meta"><div class="role">600</div><div class="hex">#6FA647</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#91BB72"></div><div class="meta"><div class="role">500</div><div class="hex">#91BB72</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#B2D09D"></div><div class="meta"><div class="role">400</div><div class="hex">#B2D09D</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#D4E5C9"></div><div class="meta"><div class="role">300</div><div class="hex">#D4E5C9</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F6F9F4;border-bottom:1px solid var(--rule)"></div><div class="meta"><div class="role">50</div><div class="hex">#F6F9F4</div></div></div>
+      </div>
+
+      <h3><span class="es-only">Rosa · acento</span><span class="en-only">Pink · accent</span></h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#ED175A"></div><div class="meta"><div class="role">Accent</div><div class="hex">#ED175A</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F04379"></div><div class="meta"><div class="role">600</div><div class="hex">#F04379</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F46F99"></div><div class="meta"><div class="role">500</div><div class="hex">#F46F99</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F79BB8"></div><div class="meta"><div class="role">400</div><div class="hex">#F79BB8</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FBC7D7"></div><div class="meta"><div class="role">300</div><div class="hex">#FBC7D7</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FEF3F7;border-bottom:1px solid var(--rule)"></div><div class="meta"><div class="role">50</div><div class="hex">#FEF3F7</div></div></div>
+      </div>
+
+      <h3><span class="es-only">Tan · fondo / silenciado</span><span class="en-only">Tan · background / muted</span></h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#CEB19C"></div><div class="meta"><div class="role">Base</div><div class="hex">#CEB19C</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#D7C0AF"></div><div class="meta"><div class="role">600</div><div class="hex">#D7C0AF</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E1CFC2"></div><div class="meta"><div class="role">500</div><div class="hex">#E1CFC2</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#EADDD4"></div><div class="meta"><div class="role">400</div><div class="hex">#EADDD4</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F3ECE7"></div><div class="meta"><div class="role">300</div><div class="hex">#F3ECE7</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FDFBFA;border-bottom:1px solid var(--rule)"></div><div class="meta"><div class="role">50</div><div class="hex">#FDFBFA</div></div></div>
+      </div>
+
+      <h3><span class="es-only">Estado · abierto / pronto / cerrado</span><span class="en-only">Status · open / soon / closed</span></h3>
+      <div class="status-grid">
+        <div class="status-chip"><span class="dot" style="background:#4D911C"></span><div><div class="nm"><span class="es-only">Abierto</span><span class="en-only">Open</span></div><div class="hx">#4D911C</div></div></div>
+        <div class="status-chip"><span class="dot" style="background:#C8881C"></span><div><div class="nm"><span class="es-only">Pronto</span><span class="en-only">Soon</span></div><div class="hx">#C8881C</div></div></div>
+        <div class="status-chip"><span class="dot" style="background:#C0392B"></span><div><div class="nm"><span class="es-only">Cerrado</span><span class="en-only">Closed</span></div><div class="hx">#C0392B</div></div></div>
+      </div>
+    </section>
+
+    <!-- ============ 04 LOGO ============ -->
+    <section class="section" id="logo">
+      <div class="eyebrow">04</div>
+      <h2><span class="es-only">Logo</span><span class="en-only">Logo</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">El wordmark «SHALOM / estética» en verde sólido. Funciona sobre blanco y tonos tan; sobre verde se invierte a blanco. Mantén siempre aire libre alrededor.</span>
+        <span class="en-only">The “SHALOM / estética” wordmark in solid green. It works on white and tan tones; on green it reverses to white. Always keep clear space around it.</span>
+      </p>
+
+      <div class="logo-grid">
+        <div>
+          <div class="logo-tile on-white"><img src="https://shalomestetica.co/assets/shalom-estetica-logo.svg" alt="Shalom Estetica logo on white"></div>
+          <div class="logo-label"><span class="es-only">Sobre blanco · preferido</span><span class="en-only">On white · preferred</span></div>
+        </div>
+        <div>
+          <div class="logo-tile on-tan"><img src="https://shalomestetica.co/assets/shalom-estetica-logo.svg" alt="Shalom Estetica logo on tan"></div>
+          <div class="logo-label"><span class="es-only">Sobre tan · cálido</span><span class="en-only">On tan · warm</span></div>
+        </div>
+        <div>
+          <div class="logo-tile on-green"><img src="https://shalomestetica.co/assets/shalom-estetica-logo.svg" alt="Shalom Estetica logo reversed on green"></div>
+          <div class="logo-label"><span class="es-only">Sobre verde · invertido (blanco)</span><span class="en-only">On green · reversed (white)</span></div>
+        </div>
+      </div>
+
+      <h3 style="margin-top:36px;"><span class="es-only">Uso correcto</span><span class="en-only">Usage</span></h3>
+      <div class="dd-grid">
+        <div class="dd do">
+          <div class="tag"><span class="es-only">✓ Sí</span><span class="en-only">✓ Do</span></div>
+          <ul>
+            <li><span class="es-only">Da espacio libre generoso alrededor del wordmark.</span><span class="en-only">Give the wordmark generous clear space.</span></li>
+            <li><span class="es-only">Usa verde sólido, o blanco invertido sobre fondos oscuros/verdes.</span><span class="en-only">Use solid green, or reversed white on dark/green backgrounds.</span></li>
+            <li><span class="es-only">Mantén la proporción original (766×239).</span><span class="en-only">Keep the original proportions (766×239).</span></li>
+          </ul>
+        </div>
+        <div class="dd dont">
+          <div class="tag"><span class="es-only">✕ No</span><span class="en-only">✕ Don't</span></div>
+          <ul>
+            <li><span class="es-only">No lo recolores a rosa ni a otros tonos.</span><span class="en-only">Don't recolor it to pink or other hues.</span></li>
+            <li><span class="es-only">No lo estires, rotes ni le añadas sombras.</span><span class="en-only">Don't stretch, rotate, or add shadows.</span></li>
+            <li><span class="es-only">No lo coloques sobre fondos ocupados o de bajo contraste.</span><span class="en-only">Don't place it on busy or low-contrast backgrounds.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 COMPONENTS ============ -->
+    <section class="section" id="components">
+      <div class="eyebrow">05</div>
+      <h2><span class="es-only">Componentes</span><span class="en-only">Components</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">Los bloques de UI reutilizables: botones, etiquetas y la píldora de estado en vivo (abierto / cerrado) que usa el sitio.</span>
+        <span class="en-only">The reusable UI building blocks: buttons, badges, and the live open/closed status pill used across the site.</span>
+      </p>
+
+      <div class="grid grid-2">
+        <div class="comp-card">
+          <div class="lbl"><span class="es-only">Botones</span><span class="en-only">Buttons</span></div>
+          <div class="stage">
+            <button class="btn btn-primary"><span class="es-only">Reservar por WhatsApp</span><span class="en-only">Book on WhatsApp</span></button>
+            <button class="btn btn-secondary"><span class="es-only">Ver servicios</span><span class="en-only">View services</span></button>
+            <button class="btn btn-ghost"><span class="es-only">Cómo llegar</span><span class="en-only">Directions</span></button>
+          </div>
+          <p style="margin:16px 0 0;color:var(--mid);font-size:13px;"><span class="es-only">Rosa = acción principal. Verde = secundaria. Contorno = terciaria.</span><span class="en-only">Pink = primary action. Green = secondary. Outline = tertiary.</span></p>
+        </div>
+
+        <div class="comp-card">
+          <div class="lbl"><span class="es-only">Etiquetas</span><span class="en-only">Badges</span></div>
+          <div class="stage">
+            <span class="badge badge-green"><span class="es-only">Spa</span><span class="en-only">Spa</span></span>
+            <span class="badge badge-pink"><span class="es-only">Promoción</span><span class="en-only">Promo</span></span>
+            <span class="badge badge-tan"><span class="es-only">Barbería</span><span class="en-only">Barbershop</span></span>
+          </div>
+          <p style="margin:16px 0 0;color:var(--mid);font-size:13px;"><span class="es-only">Tipografía Roboto Mono, en mayúsculas, sobre tinte suave de cada familia.</span><span class="en-only">Roboto Mono, uppercase, on a soft tint of each family.</span></p>
+        </div>
+
+        <div class="comp-card">
+          <div class="lbl"><span class="es-only">Píldora de estado en vivo</span><span class="en-only">Live status pill</span></div>
+          <div class="stage">
+            <span class="status-pill pill-open"><span class="dot"></span><span class="es-only">Actualmente: Abierto</span><span class="en-only">Currently: Open</span></span>
+            <span class="status-pill pill-soon"><span class="dot"></span><span class="es-only">Cerrando pronto</span><span class="en-only">Closing soon</span></span>
+            <span class="status-pill pill-closed"><span class="dot"></span><span class="es-only">Actualmente: Cerrado</span><span class="en-only">Currently: Closed</span></span>
+          </div>
+          <p style="margin:16px 0 0;color:var(--mid);font-size:13px;"><span class="es-only">Se calcula en hora de Bogotá; aparece en contacto y en el mapa.</span><span class="en-only">Computed in Bogotá time; shown in contact and on the map.</span></p>
+        </div>
+
+        <div class="comp-card">
+          <div class="lbl"><span class="es-only">Tarjeta</span><span class="en-only">Card</span></div>
+          <div class="card" style="border-radius:14px;">
+            <div style="font-family:var(--sans);font-weight:900;color:var(--green);text-transform:uppercase;font-size:1rem;"><span class="es-only">Bienestar</span><span class="en-only">Wellness</span></div>
+            <div style="font-family:var(--mono);font-size:12px;color:var(--pink);margin:2px 0 10px;"><span class="es-only">cuerpo y mente</span><span class="en-only">body and mind</span></div>
+            <p style="margin:0;color:var(--slate);font-size:14px;"><span class="es-only">Tarjeta blanca, esquina 14–16px, borde tan suave. La unidad base de contenido.</span><span class="en-only">White card, 14–16px corner, soft tan border. The base unit of content.</span></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 PATTERNS ============ -->
+    <section class="section" id="patterns">
+      <div class="eyebrow">06</div>
+      <h2><span class="es-only">Patrones</span><span class="en-only">Patterns</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">Composiciones recurrentes que dan identidad al sitio: el menú de servicios, el hero a sangre completa y el lockup de sección.</span>
+        <span class="en-only">Recurring compositions that give the site its identity: the service menu, the full-bleed hero, and the section lockup.</span>
+      </p>
+
+      <h3><span class="es-only">Tarjeta de menú de servicios</span><span class="en-only">Service menu card</span></h3>
+      <div class="grid grid-2">
+        <div class="menu-card">
+          <h4><span class="es-only">Uñas</span><span class="en-only">Nails</span></h4>
+          <div class="cat-tag"><span class="es-only">manos y pies</span><span class="en-only">hands and feet</span></div>
+          <div class="menu-item"><span class="nm"><span class="es-only">Manicure semipermanente</span><span class="en-only">Semi-permanent manicure</span></span><span class="pr">$ 45.000</span></div>
+          <div class="menu-item"><span class="nm"><span class="es-only">Pedicure spa</span><span class="en-only">Spa pedicure</span></span><span class="pr">$ 55.000</span></div>
+          <div class="menu-item"><span class="nm"><span class="es-only">Retoque de uñas</span><span class="en-only">Nail touch-up</span></span><span class="pr">$ 30.000</span></div>
+        </div>
+        <div class="menu-card featured">
+          <h4><span style="color:var(--pink)">★</span> <span class="es-only">Alisado express</span><span class="en-only">Express straightening</span></h4>
+          <div class="cat-tag"><span class="es-only">destacado</span><span class="en-only">featured</span></div>
+          <div class="menu-item"><span class="nm"><span class="es-only">Fibras tecnológicas</span><span class="en-only">Tech fibers</span></span><span class="pr">$ 120.000</span></div>
+          <div class="menu-item"><span class="nm"><span class="es-only">Pestañas pelo a pelo</span><span class="en-only">Hair-by-hair lashes</span></span><span class="pr">$ 90.000</span></div>
+        </div>
+      </div>
+      <p style="margin:14px 0 0;color:var(--mid);font-size:13px;"><span class="es-only">El precio va a la derecha en Roboto Mono rosa. La tarjeta destacada lleva borde rosa, degradado suave y prefijo ★.</span><span class="en-only">Price sits right-aligned in pink Roboto Mono. The featured card gets a pink border, soft gradient, and ★ prefix.</span></p>
+
+      <h3><span class="es-only">Hero a sangre completa</span><span class="en-only">Full-bleed hero</span></h3>
+      <div class="hero-demo">
+        <div class="hd-content">
+          <div class="hd-eyebrow"><span class="es-only">cuidado consciente</span><span class="en-only">conscious care</span></div>
+          <div class="hd-h"><span class="es-only">Bienvenido</span><span class="en-only">Welcome</span></div>
+          <p class="hd-p"><span class="es-only">Video en bucle con superposición rosa al 24% y texto claro con halo de sombra para legibilidad.</span><span class="en-only">Looping video under a 24% pink overlay, with light text and a shadow halo for legibility.</span></p>
+        </div>
+      </div>
+
+      <h3><span class="es-only">Lockup de sección</span><span class="en-only">Section lockup</span></h3>
+      <div class="lockup-demo">
+        <div class="lk-h"><span class="es-only">Contacto</span><span class="en-only">Contact</span></div>
+        <div class="lk-t"><span class="es-only">estamos para recibirte</span><span class="en-only">we're here to welcome you</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 07 VOICE ============ -->
+    <section class="section" id="voice">
+      <div class="eyebrow">07</div>
+      <h2><span class="es-only">Voz y Tono</span><span class="en-only">Voice &amp; Tone</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">Hablamos con calma y calidez. Invitamos, no presionamos. Cada frase debería sentirse como respirar hondo.</span>
+        <span class="en-only">We speak with calm and warmth. We invite, never pressure. Every line should feel like a deep breath.</span>
+      </p>
+
+      <div class="voice-grid">
+        <div class="voice-card">
+          <div class="vt"><span class="es-only">Cálido</span><span class="en-only">Warm</span></div>
+          <div class="vh"><span class="es-only">Como recibir a alguien</span><span class="en-only">Like welcoming someone</span></div>
+          <p><span class="es-only">Personal y acogedor. Usamos «tú» y hablamos de paz, cuidado y bienvenida.</span><span class="en-only">Personal and welcoming. We address the reader directly and speak of peace, care, and welcome.</span></p>
+          <p class="sample-quote"><span class="es-only">«Tu momento de paz empieza aquí.»</span><span class="en-only">“Your moment of peace starts here.”</span></p>
+        </div>
+        <div class="voice-card">
+          <div class="vt"><span class="es-only">Sereno</span><span class="en-only">Serene</span></div>
+          <div class="vh"><span class="es-only">Sin prisa, sin ruido</span><span class="en-only">Unhurried, quiet</span></div>
+          <p><span class="es-only">Frases cortas y claras. Nada estridente, nada de mayúsculas gritando ni signos de exclamación apilados.</span><span class="en-only">Short, clear sentences. Nothing shrill — no shouting caps or stacked exclamation marks.</span></p>
+          <p class="sample-quote"><span class="es-only">«Más que un spa. Más que una barbería.»</span><span class="en-only">“More than a spa. More than a barbershop.”</span></p>
+        </div>
+      </div>
+
+      <h3 style="margin-top:36px;"><span class="es-only">Sí y No</span><span class="en-only">Do &amp; Don't</span></h3>
+      <div class="dd-grid">
+        <div class="dd do">
+          <div class="tag"><span class="es-only">✓ Sí</span><span class="en-only">✓ Do</span></div>
+          <ul>
+            <li><span class="es-only">Invita: «Te esperamos», «Ven a vivir la experiencia».</span><span class="en-only">Invite: “We're waiting for you,” “Come live the experience.”</span></li>
+            <li><span class="es-only">Habla de sensaciones: paz, equilibrio, cuidado.</span><span class="en-only">Speak to feelings: peace, balance, care.</span></li>
+            <li><span class="es-only">Mantén ES como idioma base, con EN disponible.</span><span class="en-only">Keep Spanish as the base language, English available.</span></li>
+          </ul>
+        </div>
+        <div class="dd dont">
+          <div class="tag"><span class="es-only">✕ No</span><span class="en-only">✕ Don't</span></div>
+          <ul>
+            <li><span class="es-only">No uses lenguaje agresivo de venta ni urgencia falsa.</span><span class="en-only">Don't use aggressive sales language or false urgency.</span></li>
+            <li><span class="es-only">No abuses de emojis ni de signos de exclamación.</span><span class="en-only">Don't overuse emojis or exclamation marks.</span></li>
+            <li><span class="es-only">No prometas resultados; ofrece una experiencia.</span><span class="en-only">Don't promise results; offer an experience.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="credit"><span class="es-only">Shalom Estetica · Guía de Estilo v1.0</span><span class="en-only">Shalom Estetica · Style Guide v1.0</span></span>
+      <span class="credit"><span class="es-only">Sitio por</span><span class="en-only">Site by</span> <a href="https://ricarte.ai" target="_blank" rel="noopener">Ricarte.ai</a></span>
+    </div>
+  </footer>
+
+  <script>
+    /* ---- Language toggle (mirrors the live site) ---- */
+    (function () {
+      var root = document.documentElement;
+      var buttons = document.querySelectorAll('.lang-toggle button');
+      function apply(lang) {
+        root.classList.remove('lang-es', 'lang-en');
+        root.classList.add('lang-' + lang);
+        root.setAttribute('lang', lang);
+        buttons.forEach(function (b) {
+          b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false');
+        });
+        try { localStorage.setItem('shalom-lang', lang); } catch (e) {}
+      }
+      var current = root.classList.contains('lang-en') ? 'en' : 'es';
+      apply(current);
+      buttons.forEach(function (b) {
+        b.addEventListener('click', function () { apply(b.dataset.lang); });
+      });
+    })();
+
+    /* ---- Sticky nav active state via IntersectionObserver ---- */
+    (function () {
+      var nav = document.querySelector('.section-nav-inner');
+      var links = Array.prototype.slice.call(document.querySelectorAll('.section-nav a'));
+      var sections = document.querySelectorAll('.section');
+
+      /* Scroll a nav link to the horizontal center of the menu, so it's clear
+         there are more sections on either side (esp. on narrow screens). */
+      function centerNavLink(a) {
+        if (!nav || !a) return;
+        var target = a.offsetLeft - (nav.clientWidth - a.offsetWidth) / 2;
+        nav.scrollTo({ left: target, behavior: 'smooth' });
+      }
+      links.forEach(function (a) {
+        a.addEventListener('click', function () { centerNavLink(a); });
+      });
+
+      if (!('IntersectionObserver' in window) || !sections.length) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) {
+            links.forEach(function (l) { l.classList.remove('active'); });
+            var a = byId[en.target.id];
+            if (a) { a.classList.add('active'); centerNavLink(a); }
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      sections.forEach(function (s) { io.observe(s); });
+    })();
+  </script>
+</body>
+</html>
