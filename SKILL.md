@@ -17,8 +17,9 @@ Generate a **standalone brand style-guide HTML file** from a website URL.
 Usage: `/style-guide <url>` (e.g. `/style-guide https://patientsfirst.org`)
 
 The canonical example of the finished product is `template-example.html` in this skill
-directory (the NACDS Brand Style Guide). **Read it before generating** — it is the exact
-layout, CSS architecture, and component set to reproduce with the target site's brand.
+directory (the Shalom Estetica brand guide, generated from shalomestetica.co). **Read it
+before generating** — it shows the layout, CSS architecture, and component set to
+reproduce with the target site's brand.
 
 ## Hard Rules (non-negotiable)
 
