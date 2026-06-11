@@ -43,8 +43,10 @@ Fetch the page (curl with a real browser UA; fall back to scrapling stealth if b
 Extract:
 
 - **Logo**: look for inline `<svg>` in the header, or a linked `.svg` (check `<img src>`,
-  `<link rel=icon>`, og:image). Prefer the horizontal lockup. If only raster exists, note
-  it to the user and trace/recreate a faithful simple SVG or use a styled wordmark fallback.
+  `<link rel=icon>`, og:image). Prefer the horizontal lockup. If no usable SVG exists,
+  note it to the user and fall back to a **Pacifico wordmark**: load Pacifico from Google
+  Fonts and set the brand name in it, white, in the logo slot — a script treatment that
+  reads as a mark rather than plain text.
 - **Colors**: CSS custom properties in stylesheets, then computed fills on buttons/links/
   headers. Identify primary / secondary / dark anchor / surface tints. Build 5-step shade
   ramps (81% / 62% / 43% / 24% / 5% mixes toward white) when the brand doesn't define its own.
