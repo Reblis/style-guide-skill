@@ -39,6 +39,11 @@ Restart Claude Code (or start a new session) so the skill registers, then run:
 - `curl` (for fetching the target site and Lucide icons)
 - Optional, for the self-verification step: `chromium` + ImageMagick
 
+## Siblings
+
+- [palette-guide](https://github.com/Reblis/palette-guide-skill) — color palette guide from 1–12 hex codes
+- [font-guide](https://github.com/Reblis/font-guide-skill) — typography guide from a URL or font list
+
 ## License
 
 MIT © Reblis.com
