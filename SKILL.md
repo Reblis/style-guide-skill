@@ -44,9 +44,10 @@ Extract:
 
 - **Logo**: look for inline `<svg>` in the header, or a linked `.svg` (check `<img src>`,
   `<link rel=icon>`, og:image). Prefer the horizontal lockup. If no usable SVG exists,
-  note it to the user and fall back to a **Pacifico wordmark**: load Pacifico from Google
-  Fonts and set the brand name in it, white, in the logo slot — a script treatment that
-  reads as a mark rather than plain text.
+  note it to the user and fall back to a **wordmark set in the brand's own H1/display
+  font** — the heaviest loaded weight, white, with the site's H1 letter-spacing, in the
+  logo slot. Never substitute an off-brand face (no Pacifico or other script fallback);
+  the brand's display face is what makes the wordmark read as a mark.
 - **Colors**: CSS custom properties in stylesheets, then computed fills on buttons/links/
   headers. Identify primary / secondary / dark anchor / surface tints. Build 5-step shade
   ramps (81% / 62% / 43% / 24% / 5% mixes toward white) when the brand doesn't define its own.
