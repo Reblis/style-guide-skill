@@ -36,6 +36,10 @@ reproduce with the target site's brand.
    color comes from the parent's CSS `color` and size from CSS width/height on the svg.
 5. **Output location:** write the file where the user asks; default to the relevant
    project folder as `style-guide.html`. Never stream the HTML into chat.
+6. **No header glow.** Never add a `::before` radial-gradient glow blob (e.g.
+   `radial-gradient(circle, rgba(...), transparent 68%)`) to the header band — on any
+   guide, for any brand. The header is a flat color or linear gradient only; texture
+   comes from the brand's own ornaments (torn edges, accent rules), never from a glow.
 
 ## Step 1 — Scrape the brand from the URL
 
