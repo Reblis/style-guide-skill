@@ -70,6 +70,9 @@
     --warn:      #C8881C;
     --stop:      #C0392B;
 
+    /* Card radius — scraped from the site (0 = flat brand like Stratomation) */
+    --radius:    16px;
+
     /* Type faces */
     --sans: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
     --mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -269,7 +272,7 @@
   .card {
     background: var(--paper);
     border: 1px solid var(--rule);
-    border-radius: 16px;
+    border-radius: var(--radius);
     padding: 22px;
   }
   .grid { display: grid; gap: 16px; }
@@ -283,7 +286,7 @@
     background: var(--green-50);
     border: 1px solid var(--green-300);
     border-left: 4px solid var(--green);
-    border-radius: 14px;
+    border-radius: var(--radius);
     padding: 28px 26px;
     margin-bottom: 28px;
   }
@@ -313,7 +316,7 @@
   .pillar p { margin: 0; color: var(--slate); font-size: 14px; }
 
   /* ---- 02 Typography ---- */
-  .type-specimen { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; overflow: hidden; }
+  .type-specimen { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); overflow: hidden; }
   .type-row { padding: 20px 24px; border-bottom: 1px solid var(--rule-2); }
   .type-row:last-child { border-bottom: 0; }
   .type-row .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
@@ -323,7 +326,7 @@
   .sp-body { font-family: var(--sans); font-weight: 400; font-size: 16px; color: var(--ink); }
   .sp-light { font-family: var(--sans); font-weight: 300; font-size: 17px; color: var(--slate); }
 
-  .lockup-demo { text-align: center; padding: 36px 20px; background: var(--tan-50); border: 1px dashed var(--tan); border-radius: 16px; }
+  .lockup-demo { text-align: center; padding: 36px 20px; background: var(--tan-50); border: 1px dashed var(--tan); border-radius: var(--radius); }
   .lockup-demo .lk-h { font-family: var(--sans); font-weight: 900; font-size: 2rem; color: var(--green); text-transform: uppercase; letter-spacing: -.01em; }
   .lockup-demo .lk-t { font-family: var(--mono); font-weight: 500; font-size: 13px; color: var(--pink); letter-spacing: .06em; margin-top: 2px; }
 
@@ -335,14 +338,14 @@
   .swatch-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
   @media (min-width: 560px) { .swatch-grid { grid-template-columns: repeat(3,1fr); } }
   @media (min-width: 900px) { .swatch-grid { grid-template-columns: repeat(6,1fr); } }
-  .swatch { border-radius: 12px; overflow: hidden; border: 1px solid var(--rule); background: var(--paper); }
+  .swatch { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--rule); background: var(--paper); }
   .swatch .chip { height: 76px; }
   .swatch .meta { padding: 9px 11px; }
   .swatch .role { font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; text-transform: uppercase; color: var(--mid); }
   .swatch .hex { font-family: var(--mono); font-size: 12px; font-weight: 500; color: var(--ink); }
   .status-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
   @media (min-width: 620px) { .status-grid { grid-template-columns: repeat(3,1fr); } }
-  .status-chip { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 12px; border: 1px solid var(--rule); background: var(--paper); }
+  .status-chip { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--radius); border: 1px solid var(--rule); background: var(--paper); }
   .status-chip .dot { width: 14px; height: 14px; border-radius: 50%; flex: 0 0 auto; }
   .status-chip .nm { font-weight: 700; font-size: 13px; }
   .status-chip .hx { font-family: var(--mono); font-size: 11.5px; color: var(--mid); }
@@ -350,7 +353,7 @@
   /* ---- 04 Logo ---- */
   .logo-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 680px) { .logo-grid { grid-template-columns: repeat(3,1fr); } }
-  .logo-tile { border-radius: 16px; border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; padding: 40px 20px; min-height: 150px; }
+  .logo-tile { border-radius: var(--radius); border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center; padding: 40px 20px; min-height: 150px; }
   .logo-tile img { width: 160px; height: auto; }
   .logo-tile.on-white { background: #fff; }
   .logo-tile.on-tan { background: var(--tan-300); }
@@ -361,7 +364,7 @@
   /* ---- Do / Don't ---- */
   .dd-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
   @media (min-width: 680px) { .dd-grid { grid-template-columns: 1fr 1fr; } }
-  .dd { border-radius: 14px; padding: 18px 20px; border: 1px solid var(--rule); background: var(--paper); }
+  .dd { border-radius: var(--radius); padding: 18px 20px; border: 1px solid var(--rule); background: var(--paper); }
   .dd .tag { font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 7px; margin-bottom: 10px; }
   .dd.do { border-color: var(--green-300); background: var(--green-50); }
   .dd.do .tag { color: var(--green); }
@@ -371,7 +374,7 @@
   .dd li { margin: 4px 0; }
 
   /* ---- 05 Components ---- */
-  .comp-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 24px; }
+  .comp-card { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); padding: 24px; }
   .comp-card .lbl { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--mid); margin-bottom: 16px; }
   .stage { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
@@ -404,7 +407,7 @@
   .pill-closed .dot { background: var(--stop); }
 
   /* ---- 06 Patterns ---- */
-  .menu-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 20px 22px; max-width: 460px; }
+  .menu-card { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); padding: 20px 22px; max-width: 460px; }
   .menu-card.featured { border-color: var(--pink-300); background: linear-gradient(180deg, var(--pink-50), #fff 60%); }
   .menu-card h4 { margin: 0 0 4px; font-family: var(--sans); font-weight: 900; color: var(--green); text-transform: uppercase; font-size: 1.05rem; }
   .menu-card .cat-tag { font-family: var(--mono); font-size: 11px; color: var(--pink); letter-spacing: .04em; margin-bottom: 14px; }
@@ -414,7 +417,7 @@
   .menu-item .pr { font-family: var(--mono); font-weight: 700; color: var(--pink); white-space: nowrap; }
 
   .hero-demo {
-    position: relative; border-radius: 16px; overflow: hidden; min-height: 220px;
+    position: relative; border-radius: var(--radius); overflow: hidden; min-height: 220px;
     display: flex; align-items: center; padding: 32px;
     background: linear-gradient(120deg, #3a6b16, var(--green));
   }
@@ -427,7 +430,7 @@
   /* ---- 07 Voice ---- */
   .voice-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
   @media (min-width: 760px) { .voice-grid { grid-template-columns: 1fr 1fr; } }
-  .voice-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 16px; padding: 22px; }
+  .voice-card { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); padding: 22px; }
   .voice-card .vt { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; }
   .voice-card .vh { font-weight: 900; color: var(--green); font-size: 1.15rem; text-transform: uppercase; margin-bottom: 8px; }
   .voice-card p { margin: 0; color: var(--slate); font-size: 14px; }
@@ -788,7 +791,7 @@
 
         <div class="comp-card">
           <div class="lbl"><span class="es-only">Tarjeta</span><span class="en-only">Card</span></div>
-          <div class="card" style="border-radius:14px;">
+          <div class="card" style="border-radius:var(--radius);">
             <div style="font-family:var(--sans);font-weight:900;color:var(--green);text-transform:uppercase;font-size:1rem;"><span class="es-only">Bienestar</span><span class="en-only">Wellness</span></div>
             <div style="font-family:var(--mono);font-size:12px;color:var(--pink);margin:2px 0 10px;"><span class="es-only">cuerpo y mente</span><span class="en-only">body and mind</span></div>
             <p style="margin:0;color:var(--slate);font-size:14px;"><span class="es-only">Tarjeta blanca, esquina 14–16px, borde tan suave. La unidad base de contenido.</span><span class="en-only">White card, 14–16px corner, soft tan border. The base unit of content.</span></p>

@@ -57,6 +57,10 @@ Extract:
   ramps (81% / 62% / 43% / 24% / 5% mixes toward white) when the brand doesn't define its own.
 - **Typography**: Google Fonts `<link>`s and `font-family` declarations. Identify the
   display face and body face (may be one face — weight carries hierarchy then).
+- **Radius**: the site's card/surface `border-radius`. Set a single `--radius` token and
+  drive every card off it (`border-radius: var(--radius)`); leave pills (`999px`) and
+  circles (`50%`) alone. A flat brand (Stratomation, 0) must render sharp corners; a
+  rounded brand (Shalom 16px, Ricarte 8px) keeps its curve. Don't assume a value.
 - **Voice & content**: tagline, mission/about copy, nav labels, CTA verbs, audiences.
   Derive voice traits and do/don't rows from how the site actually writes.
 - **Re-probe, don't assume**: verify what the live HTML actually serves before trusting
