@@ -93,6 +93,10 @@ Reproduce the structure of `template-example.html`, re-tokenized to the scraped 
   `04 · Language` (always-say/never-say table, phrasing cards, capitalization callout) →
   `05 · Logo` (variant tiles) → `06 · Color` (swatch cards, shade ramps, gradients) →
   `07 · Typography` (type rows, scale bars, rules callout).
+- **Specimen rows are vertically centered.** Any row that places a label beside a type
+  sample (type-specimen rows, type-scale rows) uses `align-items: center`, never
+  `baseline` — the small label sits centered against the tall sample, not dropped to its
+  baseline.
 - **Labels under tiles**: logo variants and gradient cards get an uppercase label *below*
   the tile (outside the colored box) in one consistent dark grey (`--slate`), never dim
   white inside the tile. Gradient labels follow the "Light / Full / Dark Gradient" pattern.
