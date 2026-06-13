@@ -92,11 +92,26 @@ Reproduce the structure of `template-example.html`, re-tokenized to the scraped 
   do/don't rows, voice-spectrum bars) → `03 · Tone by Audience` (quote cards) →
   `04 · Language` (always-say/never-say table, phrasing cards, capitalization callout) →
   `05 · Logo` (variant tiles) → `06 · Color` (swatch cards, shade ramps, gradients) →
-  `07 · Typography` (type rows, scale bars, rules callout).
+  `07 · Typography` (type rows, scale bars, rules callout). Add a **`Layout`** section
+  whenever the site has a defined container width + responsive gutters/section rhythm
+  (see the box-model rule below) — slot it among the foundational sections (typically
+  right after Typography).
 - **Specimen rows are vertically centered.** Any row that places a label beside a type
   sample (type-specimen rows, type-scale rows) uses `align-items: center`, never
   `baseline` — the small label sits centered against the tall sample, not dropped to its
   baseline.
+- **Layout = interactive box model, not bar charts.** Represent the layout system as a
+  Chrome-DevTools-style nested box, never as standalone width bars. Three nested bands:
+  **margin** (outer, a 45° hatch of `--ink` at ~6% — the auto-centering space), **padding**
+  (the brand's accent color at ~9% with a solid accent edge — this band *is* the gutter
+  left/right and the section rhythm top/bottom), and **content** (a paper column edged in
+  the brand's primary/anchor color — the container, with its max-width + prose cap noted).
+  Edge numbers (gutter px on L/R, rhythm px on T/B, `auto` on the margin) sit centered on
+  each edge. A **breakpoint toggle** (Mobile / Tablet / Desktop) styled in the *site's own
+  button look* — reuse the scraped button class; active = accent fill — swaps the numbers
+  and animates the padding via a few lines of JS. All values (container, 3 gutters, 3
+  rhythms, prose cap) come from the scraped CSS; colors come from the brand tokens, so the
+  same component reads correctly on any site. See `template-example.html` `#layout`.
 - **Labels under tiles**: logo variants and gradient cards get an uppercase label *below*
   the tile (outside the colored box) in one consistent dark grey (`--slate`), never dim
   white inside the tile. Gradient labels follow the "Light / Full / Dark Gradient" pattern.

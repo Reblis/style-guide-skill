@@ -439,6 +439,34 @@
   @media (min-width: 760px) { .footer .footer-inner { padding: 30px 40px; } }
   .footer .credit { font-family: var(--mono); font-size: 12px; color: var(--slate); }
   .footer .credit a { color: var(--green); font-weight: 700; }
+  /* ============ LAYOUT — interactive box model ============ */
+  /* margin = hatched outer space · padding = brand accent (gutter+rhythm) ·
+     content = primary-edged container column. Toggle reuses the site's button look. */
+  .lx-toggle { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
+  .lx-btn { appearance: none; cursor: pointer; font-family: var(--sans); font-weight: 700; font-size: 12px; letter-spacing: .02em; padding: 7px 16px; border-radius: 999px; border: 2px solid var(--green); background: transparent; color: var(--green); transition: background .15s, color .15s, border-color .15s; }
+  .lx-btn:hover:not(.active) { background: var(--green); color: #fff; }
+  .lx-btn.active { background: var(--pink); border-color: var(--pink); color: #fff; }
+  .lx-margin { position: relative; padding: 34px 92px; border: 1px dashed var(--silver);
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 7px, color-mix(in srgb, var(--ink) 6%, transparent) 7px, color-mix(in srgb, var(--ink) 6%, transparent) 8px); }
+  .lx-pad { position: relative; padding: var(--p-v, 96px) var(--p-h, 40px); transition: padding .2s;
+    background: color-mix(in srgb, var(--pink) 9%, transparent); border: 1px solid color-mix(in srgb, var(--pink) 55%, transparent); }
+  .lx-content { background: var(--paper); border-left: 2px solid var(--green); border-right: 2px solid var(--green);
+    min-height: 90px; display: grid; place-items: center; text-align: center; color: var(--slate); font-family: var(--mono); font-size: 11px; padding: 18px; }
+  .lx-tag { position: absolute; top: 7px; left: 11px; font-family: var(--mono); font-weight: 700; text-transform: uppercase; font-size: 10px; letter-spacing: .08em; }
+  .lx-margin > .lx-tag { color: var(--mid); }
+  .lx-pad > .lx-tag { color: var(--pink); }
+  .lx-edge { position: absolute; font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--slate); }
+  .lx-edge.t { top: 7px; left: 50%; transform: translateX(-50%); }
+  .lx-edge.b { bottom: 7px; left: 50%; transform: translateX(-50%); }
+  .lx-edge.l { left: 9px; top: 50%; transform: translateY(-50%); }
+  .lx-edge.r { right: 9px; top: 50%; transform: translateY(-50%); }
+  .lx-margin > .lx-edge { color: var(--mid); }
+  .lx-legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 22px; font-family: var(--mono); font-size: 11px; color: var(--slate); }
+  .lx-sw { display: inline-flex; align-items: center; gap: 7px; }
+  .lx-sw i { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+  .lx-i-margin { border: 1px dashed var(--silver); background: repeating-linear-gradient(45deg, transparent, transparent 3px, color-mix(in srgb, var(--ink) 20%, transparent) 3px, color-mix(in srgb, var(--ink) 20%, transparent) 4px); }
+  .lx-i-pad { background: color-mix(in srgb, var(--pink) 18%, transparent); border: 1px solid var(--pink); }
+  .lx-i-content { background: var(--paper); border-left: 2px solid var(--green); border-right: 2px solid var(--green); }
 </style>
 </head>
 <body>
@@ -477,11 +505,12 @@
     <div class="section-nav-inner">
       <a href="#foundation"><span class="es-only">01 · Fundamento</span><span class="en-only">01 · Foundation</span></a>
       <a href="#typography"><span class="es-only">02 · Tipografía</span><span class="en-only">02 · Typography</span></a>
-      <a href="#color"><span class="es-only">03 · Color</span><span class="en-only">03 · Color</span></a>
-      <a href="#logo"><span class="es-only">04 · Logo</span><span class="en-only">04 · Logo</span></a>
-      <a href="#components"><span class="es-only">05 · Componentes</span><span class="en-only">05 · Components</span></a>
-      <a href="#patterns"><span class="es-only">06 · Patrones</span><span class="en-only">06 · Patterns</span></a>
-      <a href="#voice"><span class="es-only">07 · Voz y Tono</span><span class="en-only">07 · Voice &amp; Tone</span></a>
+      <a href="#layout"><span class="es-only">03 · Maquetación</span><span class="en-only">03 · Layout</span></a>
+      <a href="#color"><span class="es-only">04 · Color</span><span class="en-only">04 · Color</span></a>
+      <a href="#logo"><span class="es-only">05 · Logo</span><span class="en-only">05 · Logo</span></a>
+      <a href="#components"><span class="es-only">06 · Componentes</span><span class="en-only">06 · Components</span></a>
+      <a href="#patterns"><span class="es-only">07 · Patrones</span><span class="en-only">07 · Patterns</span></a>
+      <a href="#voice"><span class="es-only">08 · Voz y Tono</span><span class="en-only">08 · Voice &amp; Tone</span></a>
     </div>
   </nav>
 
@@ -593,8 +622,41 @@
     </section>
 
     <!-- ============ 03 COLOR ============ -->
-    <section class="section" id="color">
+    <!-- ============== 03 · Layout ============== -->
+    <section class="section" id="layout">
       <div class="eyebrow">03</div>
+      <h2><span class="es-only">Maquetación</span><span class="en-only">Layout</span></h2>
+      <p class="section-blurb">
+        <span class="es-only">Contenedor de 1100px, tres anchos de margen lateral (20 / 32 / 40) y tres ritmos de sección (64 / 80 / 96). El modelo de caja muestra la estructura espacial &mdash; usa el conmutador para ver cómo escala entre móvil, tablet y escritorio.</span>
+        <span class="en-only">An 1100px container, three side-gutter widths (20 / 32 / 40) and three section rhythms (64 / 80 / 96). The box model shows the spatial structure &mdash; use the toggle to see how it scales across mobile, tablet, and desktop.</span>
+      </p>
+
+      <div class="lx-toggle" role="group" aria-label="Breakpoint">
+        <button type="button" class="lx-btn" data-bp="m" aria-pressed="false"><span class="es-only">Móvil</span><span class="en-only">Mobile</span></button>
+        <button type="button" class="lx-btn" data-bp="t" aria-pressed="false">Tablet</button>
+        <button type="button" class="lx-btn active" data-bp="d" aria-pressed="true"><span class="es-only">Escritorio</span><span class="en-only">Desktop</span></button>
+      </div>
+
+      <div class="lx-margin" id="lxbox">
+        <span class="lx-tag"><span class="es-only">margen · centra el contenedor</span><span class="en-only">margin · centers the container</span></span>
+        <span class="lx-edge l">auto</span><span class="lx-edge r">auto</span>
+        <div class="lx-pad">
+          <span class="lx-tag"><span class="es-only">relleno · margen + ritmo</span><span class="en-only">padding · gutter + section rhythm</span></span>
+          <span class="lx-edge t" data-edge="pv">96</span><span class="lx-edge b" data-edge="pv">96</span>
+          <span class="lx-edge l" data-edge="ph">40</span><span class="lx-edge r" data-edge="ph">40</span>
+          <div class="lx-content"><span class="es-only">columna de contenido · máx 1100px</span><span class="en-only">content column · max 1100px</span></div>
+        </div>
+      </div>
+
+      <div class="lx-legend">
+        <span class="lx-sw"><i class="lx-i-margin"></i> <span class="es-only">margen · auto</span><span class="en-only">margin · auto</span></span>
+        <span class="lx-sw"><i class="lx-i-pad"></i> <span class="es-only">relleno · margen</span><span class="en-only">padding · gutter</span> <b id="lxg-h">40</b> / <span class="es-only">ritmo</span><span class="en-only">rhythm</span> <b id="lxg-v">96</b></span>
+        <span class="lx-sw"><i class="lx-i-content"></i> <span class="es-only">contenido · borde del contenedor</span><span class="en-only">content · container edge</span></span>
+      </div>
+    </section>
+
+    <section class="section" id="color">
+      <div class="eyebrow">04</div>
       <h2><span class="es-only">Color</span><span class="en-only">Color</span></h2>
       <p class="section-blurb">
         <span class="es-only">Tres familias. <b>Verde</b> es la marca — logo, encabezados y acentos clave. <b>Rosa</b> se reserva para llamadas a la acción y resaltes. <b>Tan</b> da calidez a fondos, tarjetas y UI silenciada.</span>
@@ -641,7 +703,7 @@
 
     <!-- ============ 04 LOGO ============ -->
     <section class="section" id="logo">
-      <div class="eyebrow">04</div>
+      <div class="eyebrow">05</div>
       <h2><span class="es-only">Logo</span><span class="en-only">Logo</span></h2>
       <p class="section-blurb">
         <span class="es-only">El wordmark «SHALOM / estética» en verde sólido. Funciona sobre blanco y tonos tan; sobre verde se invierte a blanco. Mantén siempre aire libre alrededor.</span>
@@ -686,7 +748,7 @@
 
     <!-- ============ 05 COMPONENTS ============ -->
     <section class="section" id="components">
-      <div class="eyebrow">05</div>
+      <div class="eyebrow">06</div>
       <h2><span class="es-only">Componentes</span><span class="en-only">Components</span></h2>
       <p class="section-blurb">
         <span class="es-only">Los bloques de UI reutilizables: botones, etiquetas y la píldora de estado en vivo (abierto / cerrado) que usa el sitio.</span>
@@ -737,7 +799,7 @@
 
     <!-- ============ 06 PATTERNS ============ -->
     <section class="section" id="patterns">
-      <div class="eyebrow">06</div>
+      <div class="eyebrow">07</div>
       <h2><span class="es-only">Patrones</span><span class="en-only">Patterns</span></h2>
       <p class="section-blurb">
         <span class="es-only">Composiciones recurrentes que dan identidad al sitio: el menú de servicios, el hero a sangre completa y el lockup de sección.</span>
@@ -780,7 +842,7 @@
 
     <!-- ============ 07 VOICE ============ -->
     <section class="section" id="voice">
-      <div class="eyebrow">07</div>
+      <div class="eyebrow">08</div>
       <h2><span class="es-only">Voz y Tono</span><span class="en-only">Voice &amp; Tone</span></h2>
       <p class="section-blurb">
         <span class="es-only">Hablamos con calma y calidez. Invitamos, no presionamos. Cada frase debería sentirse como respirar hondo.</span>
@@ -884,6 +946,31 @@
         });
       }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
       sections.forEach(function (s) { io.observe(s); });
+    })();
+    /* ---- Layout box model — breakpoint toggle (numbers from the scraped site) ---- */
+    (function () {
+      var VALUES = { m: { ph: 20, pv: 64 }, t: { ph: 32, pv: 80 }, d: { ph: 40, pv: 96 } };
+      var box = document.getElementById('lxbox');
+      var toggle = document.querySelector('.lx-toggle');
+      if (!box || !toggle) return;
+      var pad = box.querySelector('.lx-pad');
+      function apply(bp) {
+        var v = VALUES[bp];
+        pad.style.padding = v.pv + 'px ' + v.ph + 'px';
+        box.querySelectorAll('[data-edge="ph"]').forEach(function (e) { e.textContent = v.ph; });
+        box.querySelectorAll('[data-edge="pv"]').forEach(function (e) { e.textContent = v.pv; });
+        var lh = document.getElementById('lxg-h'), lv = document.getElementById('lxg-v');
+        if (lh) lh.textContent = v.ph; if (lv) lv.textContent = v.pv;
+        toggle.querySelectorAll('.lx-btn').forEach(function (b) {
+          var on = b.dataset.bp === bp;
+          b.classList.toggle('active', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+      toggle.addEventListener('click', function (e) {
+        var btn = e.target.closest('.lx-btn'); if (!btn) return; apply(btn.dataset.bp);
+      });
+      apply('d');
     })();
   </script>
 </body>
