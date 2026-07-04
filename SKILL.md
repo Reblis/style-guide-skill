@@ -124,15 +124,21 @@ Reproduce the structure of `template-example.html`, re-tokenized to the scraped 
   sits directly above its own ramp.
 - **Footer**: brand name + guide title left, monospace stamp right. No tool/source
   attributions in the page itself unless the user asks.
+- **Generate programmatically**: the shade ramps, swatch grids, and gradient cards are
+  computed data (ramp math, luminance-picked text color) — build the HTML with a small
+  Python script and write the file in one shot, as the palette-guide and font-guide
+  skills do; don't hand-write ramp steps and gradient cards.
 
 ## Step 4 — Verify before claiming done
 
-Screenshot the file headlessly and **look at the images** — header, every section, footer:
+Screenshot the file headlessly and **look at the images** — header, every section, footer.
+Fonts need a `--virtual-time-budget` so Google Fonts actually load before capture (a
+specimen rendering in system sans = the webfont didn't load):
 
 ```bash
 timeout 90 chromium --headless --disable-gpu --no-sandbox \
   --screenshot=check.png --window-size=1400,8400 --hide-scrollbars \
-  "file:///path/to/style-guide.html"
+  --virtual-time-budget=8000 "file:///path/to/style-guide.html"
 convert check.png -crop 1400x1000+0+<offset> slice.png   # crop slices to inspect
 ```
 
